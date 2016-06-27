@@ -1,0 +1,42 @@
+<article id = \"{$this->articleIdPrefix}$ct\" title = 'ehehe'>
+    <header>
+        <h1><a #{$this->articleIdPrefix}" . $ct++ . " title = \"{$article->title}\">{$article->title}</a></h1>
+        <div>
+            <span>Opublikowano </span><a #{$this->articleIdPrefix}" . $ct++ . ">
+            <time datetime = \"" . date('c', strtotime($article->date)) . "\">" . date('Y-m-d H:i', strtotime($article->date)) . "</time>
+        </a> <span class='sep'> przez </span> <span><a href='/' title='View all posts by Trzczy'>Trzczy</a></span>
+        </div>
+    </header>
+
+    <div>
+        {$article->text}
+    </div>
+    <footer>
+        <section>
+            <h3>Tagi</h3>
+            <ul>
+                <li><a href='\' rel='tag'>Tag1</a></li>
+                <li><a href='\' rel='tag'>Tag2</a></li>
+            </ul>
+        </section>
+    </footer>
+</article>
+
+
+
+
+
+<article id = \"{$this->articleIdPrefix}$ct\" title = 'ehehe'>
+    <h1><a href = #{$this->articleIdPrefix}" . $ct++ . ">{$article->title}</a></h1>
+    <time datetime = \"" . date('c', strtotime($article->date)) . "\">" . date('Y-m-d H:i', strtotime($article->date)) . "</time>
+    {$article->text}
+</article>
+
+
+<!--orig-->
+
+<article id = \"{$this->articleIdPrefix}$ct\" title = 'ehehe'>
+    <h1><a href = #{$this->articleIdPrefix}" . $ct++ . ">{$article->title}</a></h1>
+    <time datetime = \"" . date('c', strtotime($article->date)) . "\">" . date('Y-m-d H:i', strtotime($article->date)) . "</time>
+    {$article->text}
+</article>

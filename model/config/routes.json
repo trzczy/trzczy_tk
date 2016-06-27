@@ -1,0 +1,48 @@
+{
+  "primary": {
+    "pattern": "#/(?P<resource>[^/\\\\.,;?\n]+)/foobar#",
+    "default": {
+      "action": "standard"
+    }
+  },
+  "ultimate": {
+    "pattern": "#^(?:/(?P<number>[\\d]+))?(?:/(?P<resource>[^/\\\\.,;?\n]+)(?:/(?P<action>[^/\\\\.,;?\n]+)(?:/(?P<view>[^/\\\\.,;?\n]+)(?:/(?P<accountAction>register|unregister|authenticate|logout|opt1|opt2|opt3))?)?)?)?$#",
+    "default": {
+      "number": 0,
+      "resource": "index",
+      "action": "index",
+      "view": "index"
+    }
+  },
+  "secondary": {
+    "pattern": "#^/(?P<id>[0-9]+)(?:/(?P<resource>[^/\\\\.,;?\n]+)(?:/(?P<action>[^/\\\\.,;?\n]+))?)?$#",
+    "default": {
+      "resource": "catalog",
+      "action": "view"
+    }
+  },
+  "tertiary": {
+    "pattern": "#^/(?P<resource>[^/\\\\.,;?\n]+)(?:/(?P<action>[^/\\\\.,;?\n]+)(?:/(?P<view>[^/\\\\.,;?\n]+))?)?$#",
+    "default": {
+      "resource": "index",
+      "action": "index",
+      "view": "index"
+    }
+  },
+  "reserved": {
+    "pattern": "#^/(?P<resource>[^/\\\\.,;?\n]+)(?:/(?P<action>[^/\\\\.,;?\n]+)(?:/(?P<view>[^/\\\\.,;?\n]+))?)?$#",
+    "default": {
+      "resource": "index",
+      "action": "index",
+      "view": "index"
+    }
+  },
+  "fallback": {
+    "pattern": "#^.*$#",
+    "default": {
+      "resource": "index",
+      "action": "index",
+      "view": "index"
+    }
+  }
+}
