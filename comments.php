@@ -9,3 +9,4 @@ foreach ($forums as $forum) {
     echo $forum->shortname . " " . $forum->id . "<p>";
 
 }
+
