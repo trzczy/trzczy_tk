@@ -2,95 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0279ed16-17de-4ff6-8213-8931c65a5897" name="Default" comment="start another code tag">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Git trzczy_tk3.lnk" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/hair1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/master.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/trzczy_tk.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace (Kopia powodująca konflikty (użytkownik JbjasPC) 2016-06-18).xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/article.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/comments.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/ArticleController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/Controller.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/ExcerptsController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/IndexController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/TagController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/disqusapi/cacert.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/disqusapi/disqusapi.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/disqusapi/interfaces.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/disqusapi/json.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/disqusapi/url.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/get-pip.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/Autoload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/ServiceFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/config/routes.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/dataMapperFactory/ArticleDataMapper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/dataMapperFactory/ArticlesDataMapper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/dataMapperFactory/BlogDataMapper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/dataMapperFactory/DataMapperFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/dataMapperFactory/PdoObjectSingletonFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/domainObjectFactory/ArticleDomain.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/domainObjectFactory/ArticlesDomain.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/domainObjectFactory/BlogDomain.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/domainObjectFactory/DomainObjectFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/domainObjectFactory/ExcerptDomain.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/domainObjectFactory/TagResultDomain.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/php-brief.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/php.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/View.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/Pygments.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/gh.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/index.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/test/test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/test/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/pygments/test/test2.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/League Gothic.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/advertisement.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/articleFirst.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/aside.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/Article.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/ArticleBody.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/ArticleHeader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/Articles.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/Excerpt.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/Excerpts.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/GoTop.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/Head.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/LinkToArticle.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/SiteTitle.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/engines/Test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/excerpts.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/excerptsMain.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/footer.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/footer2.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/goTop2.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/header.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/index.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/main.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/mainArticle.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/menu.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/style.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/templates/styleofpygments.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/tplFramework/CodeParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/tplFramework/GetContent.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/tplFramework/ParsePatterns.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/tplFramework/Templates.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/tplFramework/engines/Engine.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/tplFramework/engines/EngineInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="view/font/" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -188,8 +100,8 @@
       <file leaf-file-name="comments.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/comments.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -361,7 +273,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -452,7 +364,7 @@
       <workItem from="1466935112165" duration="599000" />
       <workItem from="1466966936540" duration="2356000" />
       <workItem from="1466976255236" duration="6167000" />
-      <workItem from="1467013760296" duration="1029000" />
+      <workItem from="1467013760296" duration="1896000" />
     </task>
     <task id="LOCAL-00001" summary="start another code tag">
       <created>1467002606602</created>
@@ -475,15 +387,22 @@
       <option name="project" value="LOCAL" />
       <updated>1467005128583</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="start another code tag">
+      <created>1467017061049</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1467017061049</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105937000" />
+    <option name="totallyTimeSpent" value="106804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1278" height="982" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25205255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -783,8 +702,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/comments.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="200">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding />
         </state>
       </provider>
