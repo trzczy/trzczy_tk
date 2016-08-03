@@ -48,7 +48,7 @@ function dsq_get_http_headers_for_request($boundary, $content, $file_name, $file
     $headers[] = 'User-Agent: ' . USER_AGENT;
     $headers[] = 'Connection: close';
     if($content) {
-        $headers[] = 'Content-Length: ' . strlen($content);
+        $headers[] = 'Content-Length: ' . mb_strlen($content);
         if($file_name && $file_field) {
             $headers[] = 'Content-Type: multipart/form-data; boundary=' . $boundary;
         } else {
@@ -170,7 +170,7 @@ function _dsq_fsockopen_urlopen($url, $postdata, &$response, $file_name, $file_f
             // Strip length from body.
             list($chunk_length, $chunk_data) = explode("\r\n", $chunk_data, 2);
             $chunk_length = hexdec($chunk_length);
-            if(!$chunk_length || !strlen($chunk_data)) { break; }
+            if(!$chunk_length || !mb_strlen($chunk_data)) { break; }
 
             $joined_data .= substr($chunk_data, 0, $chunk_length);
             $chunk_data = substr($chunk_data, $chunk_length + 1);

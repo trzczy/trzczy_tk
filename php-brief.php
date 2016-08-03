@@ -75,7 +75,7 @@ $language_data = array (
             'const', 'self'
             ),
         3 => array(
-            'func_num_args', 'func_get_arg', 'func_get_args', 'strlen', 'strcmp', 'strncmp', 'strcasecmp', 'strncasecmp', 'each', 'error_reporting', 'define', 'defined',
+            'func_num_args', 'func_get_arg', 'func_get_args', 'mb_strlen', 'strcmp', 'strncmp', 'strcasecmp', 'strncasecmp', 'each', 'error_reporting', 'define', 'defined',
             'trigger_error', 'user_error', 'set_error_handler', 'restore_error_handler', 'get_declared_classes', 'get_loaded_extensions',
             'extension_loaded', 'get_extension_funcs', 'debug_backtrace',
             'constant', 'bin2hex', 'sleep', 'usleep', 'time', 'mktime', 'gmmktime', 'strftime', 'gmstrftime', 'strtotime', 'date', 'gmdate', 'getdate', 'localtime', 'checkdate', 'flush', 'wordwrap', 'htmlspecialchars', 'htmlentities', 'html_entity_decode', 'md5', 'md5_file', 'crc32', 'getimagesize', 'image_type_to_mime_type', 'phpinfo', 'phpversion', 'phpcredits', 'strnatcmp', 'strnatcasecmp', 'substr_count', 'strspn', 'strcspn', 'strtok', 'strtoupper', 'strtolower', 'strpos', 'strrpos', 'strrev', 'hebrev', 'hebrevc', 'nl2br', 'basename', 'dirname', 'pathinfo', 'stripslashes', 'stripcslashes', 'strstr', 'stristr', 'strrchr', 'str_shuffle', 'str_word_count', 'strcoll', 'substr', 'substr_replace', 'quotemeta', 'ucfirst', 'ucwords', 'strtr', 'addslashes', 'addcslashes', 'rtrim', 'str_replace', 'str_repeat', 'count_chars', 'chunk_split', 'trim', 'ltrim', 'strip_tags', 'similar_text', 'explode', 'implode', 'setlocale', 'localeconv',

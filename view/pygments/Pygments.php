@@ -56,7 +56,7 @@ class Pygments
 
     function partsArray($str)
     {
-        preg_match_all('/<code\s+data-pygments[^>]*?>/s', $str, $matches);
+        preg_match_all('/<code\s+lang[^>]*?>/s', $str, $matches);
         $openTag = $matches[0][0];
         $value = str_replace($openTag, '', $str);
         $value = str_replace('</code>', '', $value);
@@ -83,15 +83,18 @@ class Pygments
         $new_code = $this->mb_pygments_convert_code($args);
 
 //hahaha2
-//
+
 //         return htmlspecialchars($str['haha']);
         return $partsArray['codeOpeningTag'] . '<figure class="pygments"><div class="codeWrapper">' . $new_code . '</div></figure></code>';
     }
 
     function __toString() {
-        return preg_replace_callback('/<code[^>]*?>.*?<\/code>/s',
+
+        $result =  (string)preg_replace_callback('/<code[^>]*?>.*?<\/code>/s',
             array($this, "codeElement"),
             $this->text
         );
+        return $result;
+
     }
 }

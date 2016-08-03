@@ -21,13 +21,14 @@ class ServiceFactory
         return $this->blogData;
     }
 
-    public function getTagData() {
-        $this->blogData = $this->getBlogData();
-        $excerptsArray = array_map(function ($articleDomainObject) {return $this->domainObjectFactory->build('excerpt', 'Mvc\\Model\\Domain\\', $articleDomainObject);}, $this->blogData->getArticles());
-        $tagResult = $this->domainObjectFactory->build('tagresult', 'Mvc\\Model\\Domain\\');
-        $tagResult->setExcerpts($excerptsArray);
-        return $tagResult;
-    }
+    //probably to remove
+//    public function getTagData() {
+//        $this->blogData = $this->getBlogData();
+//        $excerptsArray = array_map(function ($articleDomainObject) {return $this->domainObjectFactory->build('excerpt', 'Mvc\\Model\\Domain\\', $articleDomainObject);}, $this->blogData->getArticles());
+//        $tagResult = $this->domainObjectFactory->build('tagresult', 'Mvc\\Model\\Domain\\');
+//        $tagResult->setExcerpts($excerptsArray);
+//        return $tagResult;
+//    }
 
     public function getArticlesDataByTag($tag = '') {
         $mapper = $this->dataMapperFactory->build('articles', 'Mvc\\Model\\Mapper\\');

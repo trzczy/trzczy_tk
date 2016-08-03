@@ -10,73 +10,139 @@ class ExcerptDomain
     public $body;
     public $tags = [];
 
-    public function __set($key, $value)
-    {
-        $this->$key = strip_tags($value);
-    }
-
     function __construct(ArticleDomain $object, $serialized)
     {
         $articleDomainVariables = get_object_vars($object);
         foreach ($articleDomainVariables as $property => $value) {
-            if (property_exists($this, $property))
-                if ($property === 'body')
-                    $this->$property = $this->trimToExcerpt($value);
-                else
+            if (property_exists($this, $property)) {
+                if ($property === 'body') {
+                    $this->$property = $this->trimToExcerpt($value);//$text
+                } else {
                     $this->$property = $value;
+                }
+            }
         }
         unset($object);
     }
 
-
-    function trimToExcerpt($text, $targetLength = 300, $avoidedSuffixPrefixesArr = [' ', ',', '.', ':', ';'], $step = 2)
+    function trimToExcerpt($text, $targetLength = 233)
     {
-        $strip = strip_tags($text);
-        if (strlen($strip) >= $targetLength) {
-            $pattern = '/[' . implode($avoidedSuffixPrefixesArr) . ']/';
-
-            ++$targetLength;
+        $text = $this->cleanArticle($text);
+        $text = $this->replaceBracketsByParenthesis($text);
+        $strip = $this->stripTagsBetweenCode($text);
+        if (mb_strlen($strip) > $targetLength) {
             $n = 0;
-            $stripExcerpt = '';
-
-            while (strlen($stripExcerpt) < $targetLength) {
-                $cutText = substr($text, 0, $targetLength + (++$n * $step));
-                $stripExcerpt = strip_tags($cutText);
+            $newStripExcerptLength = 0;
+            $actualLength = 0;
+            $cutText = '';
+            while (
+                ($actualLength < $targetLength)
+                AND
+                ($newStripExcerptLength < $targetLength + 1)
+            ) {
+                $testedCutText = mb_substr($text, 0, ++$n);
+                $testedPartlyStripedExcerpt = $this->stripTagsBetweenCode($testedCutText);
+                //check the last char of $testedPartlyStripedExcerpt is a word char
+                $switch = '';
+                if (preg_match('/\w[^\w]\z/u', $testedPartlyStripedExcerpt, $resultArr)) {
+                    $switch = $resultArr[0];
+                }
+                $oldStripExcerptLength = $newStripExcerptLength;
+                $newStripExcerptLength = mb_strlen($testedPartlyStripedExcerpt);
+                if (
+                    $switch
+                    AND
+                    ($newStripExcerptLength - $oldStripExcerptLength)
+                ) {
+                    $m = $n - 1;
+                    $cutText = mb_substr($text, 0, $m);
+                    $actualLength = $oldStripExcerptLength;
+                }
             }
-
-
-
-            //remove not ended opened tags or closed but w/o content
-            $cutText = preg_replace('/(\s*?<(?![^>]*?>\s*\S).*)$/s', '', $cutText, -1, $count);
-            //if next char is not a char ending a word trim the last word
-            if (!in_array(substr($cutText, -1), $avoidedSuffixPrefixesArr)) {
-                $arr = preg_split($pattern, $cutText);
-                $cutText = substr($cutText, 0, strlen($cutText) - (strlen(array_pop($arr))));
+            $r = '/<code lang[^\w]+[^<>]*>(.*?)(?:<\/code>|$)/su';
+            $cutText = preg_replace_callback(
+                $r,
+                function ($c) {
+                    return str_replace($c[1], htmlspecialchars($c[1]), $c[0]);
+                },
+                $cutText
+            );
+            if (!empty($cutText)) {
+                $cutText = $this->htmlRegenerate($cutText);
             }
-            //trim last ending chars
-            while (in_array(substr($cutText, -1), $avoidedSuffixPrefixesArr)) {
-                $cutText = substr($cutText, 0, -1);
-            }
-            $cutText =$this->htmlRegenerate($cutText);
         } else {
             $cutText = $text;
         }
-
-        
         return htmlspecialchars_decode($cutText);
     }
+
+    function cleanArticle($text)
+    {
+        $text = preg_replace('/[\cK\f\r\x85]+/us', '', $text);
+//        $text = preg_replace('/[\v]+/us', '', $text);
+        $text = preg_replace('/\h+/us', ' ', $text);
+        return $text;
+    }
+
+    private function replaceBracketsByParenthesis($betweenCode)
+    {
+        return preg_replace_callback('/\[(\/?code[ ]?[^\]]*)\]/su', function ($matches) {
+            return '<' . $matches[1] . '>';
+        },
+            $betweenCode
+        );
+    }
+
+    function stripTagsBetweenCode($text)
+    {
+        $r = '/((^|<\/code>).*?(<code[^>]*?>|$))/us';
+        $text = preg_replace_callback($r, function ($a) {
+            $betweenCode = $a[0];
+
+            /*
+             *            $betweenCode = mb_ereg_replace('/<[^<>]*?>/s', '', $betweenCode);
+             */
+
+
+            $betweenCode = $this->addSpaceBetweenTags($betweenCode);
+            $betweenCode = strip_tags($betweenCode);
+
+            return $betweenCode;
+        }, $text);
+
+        return $text;
+    }
+
+    function addSpaceBetweenTags($text)
+    {
+        foreach (['p', 'code', 'blockquote'] as $tag) {
+            $text = preg_replace_callback('/(<\/' . $tag . '>)(\S)/',
+                function ($matches) {
+                    return ($matches[1] . ' ' . $matches[2]);
+                }
+                , $text);
+        }
+        return $text;
+    }
+
     function htmlRegenerate($html)
     {
+
         $dom = new \DOMDocument();
         $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8"), LIBXML_HTML_NODEFDTD);
         $dots = $dom->createTextNode("...");
         $dom->documentElement->lastChild->lastChild->appendChild($dots);
         $innerHTML = "";
         foreach ($dom->getElementsByTagName('body')->item(0)->childNodes as $child) {
-            $innerHTML .= $dom->saveHTML($child);
+            $innerHTML .= preg_replace('/\n+$/us', ' ', $dom->saveHTML($child));
         }
+
         return $innerHTML;
     }
 
-
+    public function __set($key, $value)
+    {
+        $this->$key = strip_tags($value);
+    }
 }
+

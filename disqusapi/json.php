@@ -214,7 +214,7 @@ class JSON
         $state = IN_NOWHERE;
         $end = -1;
         $start = -1;
-        while ( $i < strlen($e) && $end == -1 ) {
+        while ( $i < mb_strlen($e) && $end == -1 ) {
             switch( $e[$i] ) {
                 /* objects */
                 case "{":
@@ -231,7 +231,7 @@ class JSON
                             default:
                                 break 2; /* exit from switch and while */
                         }
-                        while ( ++$i && $i < strlen($e) && $aux != 0 ) {
+                        while ( ++$i && $i < mb_strlen($e) && $aux != 0 ) {
                             switch( $e[$i] ) {
                                 case $_tag:
                                     $aux++;
@@ -249,7 +249,7 @@ class JSON
                 case "'":
                     $state = IN_STRING;
                     $buf = "";
-                    while ( ++$i && $i < strlen($e) && $e[$i] != '"' ) {
+                    while ( ++$i && $i < mb_strlen($e) && $e[$i] != '"' ) {
                         if ( $e[$i] == "\\") 
                             $i++;
                         $buf .= $e[$i];
@@ -310,8 +310,8 @@ class JSON
                     $start = (int)$i;
                     if ( $e[$i] == "-" || $e[$i] == "+")
                         $i++;
-                    for ( ;  $i < strlen($e) && (is_numeric($e[$i]) || $e[$i] == "." || strtolower($e[$i]) == "e") ;$i++){
-                        $n = $i+1 < strlen($e) ? $e[$i+1] : "";
+                    for ( ;  $i < mb_strlen($e) && (is_numeric($e[$i]) || $e[$i] == "." || strtolower($e[$i]) == "e") ;$i++){
+                        $n = $i+1 < mb_strlen($e) ? $e[$i+1] : "";
                         $a = strtolower($e[$i]);
                         if ( $a == "e" && ($n == "+" || $n == "-"))
                             $i++;
