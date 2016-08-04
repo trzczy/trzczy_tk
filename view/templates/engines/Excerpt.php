@@ -35,7 +35,7 @@ class Excerpt extends Engine implements EngineInterface
 <article id = '{$this->articleIdPrefix}{$article->article_id}' class='' itemprop='blogPost' itemscope='' itemtype='http://schema.org/BlogPosting'>
     {{articleHeader/{$this->articleIdPrefix}{$article->article_id}/{$article->title}/{$article->created}/{$article->username}}}
     <div itemprop='articleBody'>{{articleBody/" . $ct . "}}</div>
-    <a class = 'more' href = '/?anchor#{$this->articleIdPrefix}{$article->article_id}'>Więcej</a>
+    <a class = 'more' href = '/?ctrlr={$this->articleIdPrefix}&id={$article->article_id}'>Więcej</a>
     <footer>
         " . $tagsSection . "
     </footer>

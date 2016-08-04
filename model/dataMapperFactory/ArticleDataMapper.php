@@ -21,22 +21,6 @@ class ArticleDataMapper extends DataMapperFactory
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
-
-        //Debug info
-        ?><span class='debugNfo'><h4>Debug info | title <?= '<span style = "color: green;">' . __FILE__ . '</span> ' . __LINE__ ?></h4><pre><?php
-                //May repeat
-                echo "\n\n";
-                echo '';
-                echo "\n\n";
-                //may repeat end
-                //May repeat 2
-                var_dump($result);
-                echo "\n";
-                //may repeat 2 end
-                ?></pre><h4>End</h4></span><?= "\n\n\n\n" ?><?php
-        //Debug info end
-
-
         if (empty($result)) return;
 
         while ($articleData = array_shift($result)) {

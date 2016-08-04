@@ -10,31 +10,6 @@ class Article extends Engine implements EngineInterface
     protected $parametersArray;
     private $articleIdPrefix = 'article';
 
-
-    function komentarze($number)
-    {
-        $r1=$number % 100;
-        if ($r1 == 1 && $number < 100)
-        {
-            $p='komentarz';
-        }
-        else
-        {
-            $r2=$r1 % 10;
-            if (($r2 > 1 && $r2 < 5) && ($r1 < 12 || $r1 > 14))
-            {
-                $p='komentatrze';
-            }
-            else
-            {
-                $p='komentarzy';
-            }
-        }
-        return $p;
-    }
-
-
-
     /**
      * @return string
      */
@@ -59,7 +34,6 @@ class Article extends Engine implements EngineInterface
         }
 
 
-
         return "
 <article id = '{$this->articleIdPrefix}{$article->article_id}' class='' itemprop='blogPost' itemscope='' itemtype='http://schema.org/BlogPosting'>
     {{articleHeader/{$this->articleIdPrefix}{$article->article_id}/{$article->title}/{$article->created}/{$article->username}}}
@@ -77,6 +51,22 @@ class Article extends Engine implements EngineInterface
     <a style = 'top: " . (int)($ct++ * 33) . "px' title = 'Link do " . $article->title . "' class = 'bullet' href = '#{$this->articleIdPrefix}{$article->article_id}' tabindex = '-1'><span class = 'visually-hidden'>" . $article->title . "</span></a>
 </article>
 ";
+    }
+
+    function komentarze($number)
+    {
+        $r1 = $number % 100;
+        if ($r1 == 1 && $number < 100) {
+            $p = 'komentarz';
+        } else {
+            $r2 = $r1 % 10;
+            if (($r2 > 1 && $r2 < 5) && ($r1 < 12 || $r1 > 14)) {
+                $p = 'komentatrze';
+            } else {
+                $p = 'komentarzy';
+            }
+        }
+        return $p;
     }
 }
 

@@ -22,7 +22,6 @@ $loader->addNamespace('Mvc\Model\Domain', __DIR__ . '/model/domainObjectFactory'
 $loader->addNamespace('Mvc\Model', __DIR__ . '/model');
 date_default_timezone_set('Europe/Warsaw');
 mb_internal_encoding("UTF-8");
-$test = 12;
 
 $view = new View();
 $dbhProvider = function () {

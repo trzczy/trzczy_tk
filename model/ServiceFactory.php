@@ -1,5 +1,6 @@
 <?php
 namespace Mvc\Model;
+
 class ServiceFactory
 {
     private $dataMapperFactory;
@@ -14,7 +15,8 @@ class ServiceFactory
         $this->domainObjectFactory = $domainObjectFactory;
     }
 
-    public function getBlogData() {
+    public function getBlogData()
+    {
         $mapper = $this->dataMapperFactory->build('blog', 'Mvc\\Model\\Mapper\\');
         $this->blogData = $this->domainObjectFactory->build('blog', 'Mvc\\Model\\Domain\\');
         $mapper->fetch($this->blogData);
@@ -30,14 +32,8 @@ class ServiceFactory
 //        return $tagResult;
 //    }
 
-    public function getArticlesDataByTag($tag = '') {
-        $mapper = $this->dataMapperFactory->build('articles', 'Mvc\\Model\\Mapper\\');
-        $this->articlesData = $this->domainObjectFactory->build('articles', 'Mvc\\Model\\Domain\\');
-        $mapper->fetch($this->articlesData, $tag);
-        return $this->articlesData;
-    }
-
-    public function getArticleById($id) {
+    public function getArticleById($id)
+    {
         $mapper = $this->dataMapperFactory->build('article', 'Mvc\\Model\\Mapper\\');
         $this->articleData = $this->domainObjectFactory->build('article', 'Mvc\\Model\\Domain\\');
 
@@ -46,12 +42,28 @@ class ServiceFactory
         return $this->articleData;
     }
 
-    public function getExcerptsByTag($tag) {
+    public function getExcerptsByTag($tag)
+    {
         $this->articlesData = $this->getArticlesDataByTag($tag);
-        $excerptsArray = array_map(function ($articleDomainObject) {return $this->domainObjectFactory->build('excerpt', 'Mvc\\Model\\Domain\\', $articleDomainObject);}, $this->articlesData->getArticles());
+        $excerptsArray = array_map(
+            function (
+                $articleDomainObject
+            ) {
+                return $this->domainObjectFactory->build('excerpt', 'Mvc\\Model\\Domain\\', $articleDomainObject);
+            },
+            $this->articlesData->getArticles()
+        );
         $tagResult = $this->domainObjectFactory->build('tagResult', 'Mvc\\Model\\Domain\\');
         $tagResult->setExcerpts($excerptsArray);
         return $tagResult;
+    }
+
+    public function getArticlesDataByTag($tag = '')
+    {
+        $mapper = $this->dataMapperFactory->build('articles', 'Mvc\\Model\\Mapper\\');
+        $this->articlesData = $this->domainObjectFactory->build('articles', 'Mvc\\Model\\Domain\\');
+        $mapper->fetch($this->articlesData, $tag);
+        return $this->articlesData;
     }
 
     public function setDefaultNamespace($string)
