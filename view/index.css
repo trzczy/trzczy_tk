@@ -1,0 +1,454 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*flex*/
+html {
+}
+
+/*.top-bar*/
+.top-bar {
+    background: #ffffff;
+}
+
+.top-menu li {
+    flex-basis: 12%;
+    text-align: start;
+    list-style-type: none;
+}
+
+.top-menu li:first-child {
+    /*margin-left: 4%;*/
+}
+
+.top-menu a,
+.top-menu :visited,
+.top-menu :link,
+.top-menu :active,
+.top-menu a:hover :target {
+    color: #ffffff;
+}
+
+.top-menu {
+    flex-flow: row wrap;
+    display: flex;
+    justify-content: flex-start;
+    align-content: space-between;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 14pt;
+    letter-spacing: 1.2pt;
+    background-color: #0F1419;
+}
+
+a {
+    align-self: center;
+}
+
+/*-flex*/
+body {
+    text-align: left;
+    font-size: 18pt;
+    color: #0F1419;
+    font-family: Georgia, serif;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        width: 100%;
+    }
+
+    nav {
+        padding: 0;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Lucida Grande';
+    src: url("font/LucidaGrandeRegular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: DistroBold;
+    src: url("font/DISTROB_.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: DistroTitle;
+    src: url("font/DISTROM_.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: DistroText;
+    src: url("font/DISTRO__.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: OpenSansCondBold;
+    src: url("font/OpenSans-CondBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: OpenSansCondLight;
+    src: url("font/OpenSans-CondLight.ttf") format("truetype");
+}
+
+ol {
+    font-family: 'Fira Mono', monospace;
+    font-size: 12pt;
+    line-height: 1.7;
+}
+
+article {
+    margin-bottom: 67px;
+}
+
+ol {
+    margin: 2px
+}
+
+ol {
+    margin-left: 44px
+}
+
+.logo-anchor:link, .logo-anchor, .logo-anchor:visited, .logo-anchor:hover,
+.logo-anchor:active {
+    color: rgba(255, 252, 244, .8);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.logo-group p {
+    font-family: 'Press Start 2P', cursive;
+    word-break: break-all;
+}
+
+/*.tags .active {*/
+/*color: #767676;*/
+/*}*/
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.logo-group {
+    margin-bottom: 33px;
+}
+
+a {
+    outline: none;
+}
+
+.top-menu li, .top-menu li a {
+    padding: 0.7em 0 0.8em;
+}
+
+.top-menu li a {
+    padding-left: 2.9vw;
+    padding-right: 2.8vw;
+}
+
+.top-menu li:first-child a {
+    /*padding-left: 4vw;*/
+}
+
+/**index*/
+.index, .index body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/*hero*/
+.index section {
+    overflow: hidden;
+    height: calc(100% - 80px);
+    width: 100%;
+    position: relative;
+}
+
+.index .top-bar {
+}
+
+.index footer {
+    flex: 1;
+    background: #68B604;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    color: #0F1419;
+}
+
+/**hero unit*/
+.hero {
+    height: calc(100% - 50px);
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero ul {
+    list-style-type: none;
+}
+
+.hero li {
+    list-style-type: none;
+}
+
+.hero .logo-anchor {
+    text-align: center;
+}
+
+.center-block .logo-group {
+    padding: 10px;
+    opacity: 0;
+    animation: fadein 2s 2s forwards;
+}
+
+.center-block {
+    position: absolute;
+    left: calc(50% - 110px);
+    top: calc(50% - 70px);
+    width: 200px;
+    z-index: 1;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.hero .logo-group .logo {
+    font-size: 33px;
+    text-shadow: none;
+    letter-spacing: normal;
+    margin-bottom: 0;
+}
+
+.hero .logo-group {
+    margin: 0;
+    padding: 0;
+}
+
+.hero .logo-group p {
+    position: relative;
+    display: inline-block;
+    left: 4px;
+    font-size: 11px;
+}
+
+.fadein li {
+    max-width: 100%;
+    height: auto;
+}
+
+.fadein div {
+    height: 100%;
+    width: 100%;
+    transform: scale(1.15);
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1.0);
+        opacity: 0;
+    }
+    79% {
+        transform: scale(1.0);
+    }
+
+    80% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+.fadein div {
+    animation-name: fade;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 30s;
+}
+
+.fadein :nth-child(2) div {
+    /*background-image: url(../view/images/10914827_890335234330054_1023511641155714257_o.jpg);*/
+    background-image: url(../view/images/964088_579772055386375_739487264_o.jpg);
+    /*background-image: url(https://scontent-waw1-1.xx.fbcdn.net/t31.0-8/964088_579772055386375_739487264_o.jpg);*/
+    animation-delay: 0s;
+}
+
+.fadein :nth-child(1) div {
+    background-image: url(../view/images/10830776_890335227663388_5426896635321180042_o.jpg);
+    /*background-image: url(http://scontent-waw1-1.xx.fbcdn.net/t31.0-8/10830776_890335227663388_5426896635321180042_o.jpg);*/
+    animation-delay: 15s;
+}
+
+.top-menu a:hover {
+    color: #68B604;
+    outline: none;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+
+.footer {
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+}
+
+body {
+    /*background: grey;*/
+}
+
+.typing p a {
+    color: rgba(255, 252, 224, .5);
+    text-decoration: none;
+}
+
+.typing {
+    position: absolute;
+}
+
+.typing p {
+    overflow: hidden;
+    border-right: .1em solid;
+    color: rgba(255, 252, 244, 0.8);
+    font-family: 'Inconsolata', monospace;
+    white-space: nowrap;
+    border-color: transparent;
+    animation: typing 2s steps(44, end) 2s backwards, /*typing 6s*/ blink-caret .5s step-end 4 2s alternate forwards;
+}
+
+.typing p:nth-child(2) {
+    animation: typing 3s steps(45, end) 4s backwards, /*typing 8s*/ blink-caret .5s step-end 4s infinite alternate backwards;
+}
+
+/* Ultra small devices (telephones, up to 767px) */
+@media (max-width: 767px) {
+    .typing p {
+        font-size: 12px;
+        font-weight: bold;
+        width: 400px;
+    }
+
+    .typing p:nth-child(2) {
+        margin-top: 5px;
+        width: 688px;
+    }
+
+    .typing {
+        left: calc(50% - 130px);
+        top: calc(50% + 50px);
+    }
+
+    .top-menu {
+        font-size: 12pt;
+        letter-spacing: 1.1pt;
+    }
+
+    .top-menu li, .top-menu li a {
+        padding-top: 0.9em;
+        padding-bottom: 1.0em;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .typing p {
+        font-size: 22px;
+        font-weight: bold;
+        width: 488px;
+    }
+
+    .typing p:nth-child(2) {
+        width: 496px;
+    }
+
+    .typing {
+        left: calc(50% - 238px);
+        top: calc(50% + 40px);
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .typing p {
+        font-size: 32px;
+        font-weight: normal;
+        width: 711px;
+    }
+
+    .typing p:nth-child(2) {
+        width: 722px;
+    }
+
+    .typing {
+        left: calc(50% - 360px);
+        top: calc(50% + 40px);
+    }
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes blink-caret {
+    0% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: rgba(255, 252, 244, .8);
+    }
+    100% {
+        border-color: transparent;
+    }
+}
+
+.typing ::selection {
+    background: black;
+}
