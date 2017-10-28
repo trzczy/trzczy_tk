@@ -14,11 +14,11 @@ class Head extends Engine implements EngineInterface
      */
     function getResult()
     {
-        $pageTitle = ((isset($this->parametersArray[0]))AND('multipleArticles'===($this->parametersArray[0])))
+        $pageTitle = ((isset($this->parametersArray[0]))AND('singleArticle'===($this->parametersArray[0])))
             ?
-            $this->data["siteTitle"]
+            $this->data['articles'][0]->page_title
             :
-            $this->data['articles'][0]->page_title;
+            $this->data["siteTitle"];
         return "
 <head>
     <meta charset=\"utf-8\">
@@ -31,12 +31,10 @@ class Head extends Engine implements EngineInterface
     <link href='https://fonts.googleapis.com/css?family=Fira+Mono:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata&amp;subset=latin-ext' rel='stylesheet' type='text/css'>
+    <link rel=\"stylesheet\" href=\"view/fa/css/font-awesome.min.css\">
     {{style}}
     {{styleofpygments}}
-
-    <script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js\"></script>
-    <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.4/gist-embed.min.js\"></script>
-
 </head>
 ";
     }

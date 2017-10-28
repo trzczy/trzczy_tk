@@ -1,8 +1,11 @@
 <?php
 namespace Trzczy\Frameworks\Tpl;
 
+use DOMDocument;
+
 class CodeParser
 {
+    use CodeParserHelper;
     use GetContent;
 
     private $routerPattern = "/(?<fields>\b[^\/]+\b)/u";
@@ -10,100 +13,126 @@ class CodeParser
     private $data;
     private $debug;
 
-    function __construct($result, $patterns, $debug, $data, $view)
+    /**
+     * CodeParser constructor
+     * @param $result
+     * @param $pattern
+     * @param $debug
+     * @param $data
+     * @param $view
+     */
+    function __construct($result, $pattern, $debug, $data, $view)
     {
         $this->data = $data;
         $this->debug = $debug;
         do {
-            preg_match_all($patterns['pattern'], $result, $matches, $patterns['flag'] ? constant($patterns['flag']) : null);
+            preg_match_all($pattern['pattern'], $result, $matches, $pattern['flag']
+                ?
+                constant($pattern['flag'])
+                :
+                null
+            );
             $matches = $matches['inner'];
             $match = null;
             foreach ($matches as $match) {
-                if($match) break;
+                if ($match) {
+                    break;
+                }
             }
-            if($match) {
+            if ($match) {
                 preg_match_all($this->routerPattern, $match, $matchArray);
                 $matchArray = array_filter($matchArray["fields"], function ($var) {
                     return ($var || ($var === '0'));
                 });
                 $label = array_shift($matchArray);
+                /**
+                 * @see CodeParserHelper
+                 */
                 $html = $this->codeGen($label, $matchArray);
-
                 if (!empty($html)) {
                     $code = $html[0];
                     if ($debug) {
-                        if(!preg_match('/{{.+}}/', $code)) $path = $view;
-                        $code = $this->addDebugAttributes($html[1], $code);
+
+                        /**
+                         * @see CodeParserHelper
+                         */
+                        $code = $this->addDebugAttributes($html);
                     }
+
+                    /**
+                     * @see CodeParserHelper
+                     */
                     $result = $this->replaceQueryByText($match, $code, $result);
                 }
             }
         } while ($match);
-        $this->result = $result;
 
 
-    }
+        /**
+         *
+         *
+         * @var bool $debug
+         */
 
-    /**
-     * @param $debugText
-     * @param $html
-     * @return string
-     */
-    private function addDebugAttributes($debugText, $html) {
-        $dom = new \DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        @$dom->loadHTML($html, LIBXML_HTML_NODEFDTD);
-        $x = new \DOMXPath($dom);
-        foreach ($x->query("/html/body/*") as $node) {
-            $node->setAttribute("title", $debugText);
-            $node->setAttribute("data-debug", true);
-            $color = sprintf("#%06x",rand(0,16777215));
-            $node->setAttribute("style", "background-color: $color;");
-        }
-        $newHtml = "";
-        foreach ($dom->getElementsByTagName('body')->item(0)->childNodes as $child) {
-            $newHtml .= html_entity_decode($dom->saveHTML($child));
-        }
-        return $newHtml;
-    }
+        /**
+         * TitleSnakes
+         */
 
 
-    function normalizeArray($arrayMatches)
-    {
-        $matches = [];
-        foreach ($arrayMatches as $memberMatches) {
-            if (isset($memberMatches['inner'])) {
-                $matches[] = $memberMatches['inner'];
+        if ($debug) {
+            /**
+             * TitleSnakes
+             */
+            $delimiter = ' ';//todo
+            $doc = new DOMDocument();
+            libxml_use_internal_errors(true);
+            /** @var string $result */
+            $doc->loadHTML($result);//$result todo
+            libxml_clear_errors();
+            foreach ($doc->getElementsByTagName('*') as $node) {
+                /** @noinspection PhpUndefinedMethodInspection */
+                if ($node->hasAttribute('title')) {
+                    /** @noinspection PhpUndefinedMethodInspection */
+                    $node->removeAttribute('title');
+                }
             }
+
+            foreach ($doc->getElementsByTagName('*') as $node) {
+                /** @noinspection PhpUndefinedMethodInspection */
+                if ($node->hasAttribute('debug')) {//'debug' todo
+                    $nodeSnake = [$node];
+                    while ($node = $node->parentNode) {
+                        /** @noinspection PhpUndefinedMethodInspection */
+                        if ($node->nodeType === 1 AND $node->hasAttribute('debug')) {
+                            $nodeSnake[] = $node;
+                        }
+                    }
+                    for ($i = 0; $i < count($nodeSnake); $i++) {
+                        /** @noinspection PhpUndefinedMethodInspection */
+                        if (!$nodeSnake[$i]->hasAttribute('title')) {
+                            $path = '';
+                            for ($j = $i; $j < count($nodeSnake); $j++) {
+                                /** @noinspection PhpUndefinedMethodInspection */
+                                $path = "{$nodeSnake[$j]->getAttribute('debug')}$delimiter$path";
+                            }
+                            /** @var string $view */
+                            $title = trim("$view $path");//$view todo
+                            /** @noinspection PhpUndefinedMethodInspection */
+                            $nodeSnake[$i]->setAttribute('title', $title);
+                        }
+                    }
+                }
+            }
+            $doc->formatOutput = true;
+            /** @noinspection PhpUndefinedMethodInspection */
+            $result = $doc->saveHTML();
         }
-        return $matches;
-    }
+        /**
+         *
+         *
+         */
 
-    function normalizeArray2($arrayMatches)
-    {
-        return array_filter($arrayMatches["inner"]);
-    }
-
-    function replaceQueryByText($match, $text, $result)
-    {
-        return str_replace("{{{$match}}}", $text, $result);
-    }
-
-    /**
-     * @param $label
-     * @param array $matchArray
-     * @return string|Style
-     */
-    function codeGen($label, $matchArray = [])
-    {
-        $content = $this->getTemplateContent($label);
-        $class = ucwords($label);
-
-        $contentAndDebugArray = $this->getEngineContent($class, $content, $label, $matchArray, $this->data, $this->debug);
-        if (empty($contentAndDebugArray))
-            echo 'Message: ' . "'$class' class is not present in engines folder
-                    or '$label' label is not present in templates folder." . '<br><br>';
-        return $contentAndDebugArray;
+        $this->result = $result;
     }
 
     function getResult()

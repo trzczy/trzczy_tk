@@ -5,7 +5,7 @@ from pygments.formatters import HtmlFormatter
 # If there isn't only 2 args something weird is going on
 
 expecting = 2;
-if ( len(sys.argv) != expecting + 1 ):
+if (len(sys.argv) != expecting + 1):
   exit(128)
 
 # Get the code
@@ -23,12 +23,12 @@ if language == 'php':
 # GUESS
 elif language == 'guess':
   from pygments.lexers import guess_lexer
-  lexer = guess_lexer( code )
+  lexer = guess_lexer(code)
 
 # GET BY NAME
 else:
   from pygments.lexers import get_lexer_by_name
-  lexer = get_lexer_by_name( language )
+  lexer = get_lexer_by_name(language)
   
 
 # OUTPUT

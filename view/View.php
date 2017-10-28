@@ -6,7 +6,7 @@ class View
 {
     protected $data;
 
-    public function render($data, $view = 'index') {
+    public function render($data, $view) {
         new Templates($data, $view);
     }
 }

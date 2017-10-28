@@ -18,10 +18,21 @@ class BlogDataMapper extends DataMapperFactory
         $this->dbhProvider = $dbhProvider;
     }
 
-    function fetch(BlogDomain $blog)
+    function fetch(BlogDomain $blog, $tag = null, $sort = 0)
     {
         $dbhProvider = $this->dbhProvider;
-        $sth = $dbhProvider()->prepare("SELECT article.article_id, article.title, article.created, users.username, article_body.body FROM `article` JOIN `article_body` ON article.article_id = article_body.article_id JOIN `users` ON article.author_id = users.user_id");
+        $query = "
+            SELECT article.sort, article.article_id, article.title, article.created, users.username, article_body.body
+            FROM `article`
+            JOIN `article_body` ON article.article_id = article_body.article_id
+            JOIN `users` ON article.author_id = users.user_id" . ($tag?"
+            JOIN `article_tag_map` ON article.article_id = article_tag_map.article_id
+            JOIN `tag` ON article_tag_map.tag_id = tag.tag_id
+            WHERE tag.description='$tag'":'') . (($tag&&$sort)?' AND (':'') . (((!$tag)&$sort)?' WHERE ':'') . ($sort?$this->arrayToWhere($sort):'') . (($tag&&$sort)?')':'')
+        ;
+
+        $sth = $dbhProvider()->prepare($query);
+
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -42,15 +53,15 @@ class BlogDataMapper extends DataMapperFactory
                     $articleObject->$property = $articleData[$property];
             }
 
-
+            $articleObject->comments_number = 0;
             $identifier = "article{$articleObject->article_id}";
             foreach ($threads as $threadObj) {
                 if (in_array($identifier, $threadObj->identifiers)) {
+                    $articleObject->comments_number = $threadObj->posts;
                     break;
                 }
             }
 
-            $articleObject->comments_number = $threadObj->posts;
 
 
             $articleId = $articleData['article_id'];
@@ -59,11 +70,18 @@ class BlogDataMapper extends DataMapperFactory
             $sth->execute();
 
             $articleObject->tags = array_map(function ($arg) {
-                return $arg['description'];
-            }, $sth->fetchAll(\PDO::FETCH_ASSOC));
+                    return $arg['description'];
+                }, $sth->fetchAll(\PDO::FETCH_ASSOC)
+            );
             $blog->add($articleObject);
         }
 
 
+    }
+
+    private function arrayToWhere($sort)
+    {
+        $separated = implode(" OR article.sort=", $sort);
+        return "article.sort=" . $separated;
     }
 }

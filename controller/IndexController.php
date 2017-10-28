@@ -1,22 +1,24 @@
 <?php
 namespace Trzczy\Login\Controller;
 
-class IndexController
+class IndexController extends Controller
 {
-    private $data;
+    protected $data;
 
     function __construct($view, $debugIsOn = false, $serviceFactory = null)
     {
+        parent::__construct();
+
         $debug = new \stdClass;
         $debug->on = $debugIsOn;
 
         $this->data['debug'] = $debug;
+        $this->data['page'] = 'index';
 
-        $this->data['siteTitle'] = 'Artykuły mojego bloga';
+        $this->data['siteTitle'] = 'Moja strona osobista';
 
-        $this->data['articles'] = $serviceFactory->getBlogData()->getArticles();
-
-        $view->render($this->data);
+        /** @noinspection PhpUndefinedMethodInspection */
+        $view->render($this->data, 'firstIndex');
     }
 }
 

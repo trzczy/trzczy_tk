@@ -24,7 +24,7 @@ $pageIdentifier = 'article' . $this->data['articles'][0]->article_id;
 <script>
     /*** RECOMMENDED CONFIGURATION VARIABLES ***/
     var disqus_config = function () {
-        this.page.url = 'http://trzczy.tk/?anchor&ctrlr=article&id=" . $this->data['articles'][0]->article_id . "';
+        this.page.url = 'http://trzczy.tk/?anchor&ctrl=article&id=" . $this->data['articles'][0]->article_id . "';
         this.page.identifier = '$pageIdentifier';
     };
 

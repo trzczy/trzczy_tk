@@ -20,6 +20,6 @@ class SiteTitle extends Engine implements EngineInterface
             unset($o['anchor']);
         }
         $siteTitle = $this->data["siteTitle"];
-        return "<a href='?" . http_build_query($o) . "' rel='tag' class = 'site-title" . (($this->parametersArray[0] === 'visuallyHidden') ? ' visually-hidden' : '') . "' tabindex = '-1'><h2>$siteTitle</h2></a>";
+        return "<h2><a href='?" . http_build_query($o) . "' rel='tag' class = 'site-title" . (($this->parametersArray[0] === 'visuallyHidden') ? ' visually-hidden' : '') . "' tabindex = '-1'>$siteTitle</a></h2>";
     }
 }

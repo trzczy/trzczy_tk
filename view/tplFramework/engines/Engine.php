@@ -1,9 +1,6 @@
 <?php
 namespace Trzczy\Frameworks\Tpl;
 
-use DOMDocument;
-use DOMXPath;
-
 class Engine
 {
     protected $code;

@@ -8,7 +8,9 @@ class PdoObjectSingletonFactory
     {
         if (self::$instance === NULL) {
             try {
-                self::$instance = new \PDO('mysql:host=localhost;port=3306;dbname=john;charset=utf8', 'john', 'passw0rd');
+//                self::$instance = new \PDO('mysql:host=localhost;port=3306;dbname=trzczy_tk;charset=utf8', 'trzczy_tk', '109weDTp');
+                self::$instance = new \PDO('mysql:host=127.0.0.1;port=3306;dbname=trzczy_tk;charset=utf8', 'trzczy_tk', '109weDTp');
+//                self::$instance = new \PDO('mysql:host=172.22.0.2   ;port=3306;dbname=trzczy_tk;charset=utf8', 'trzczy_tk', '109weDTp');
                 self::$instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                 self::$instance->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
             } catch (\PDOException $e) {

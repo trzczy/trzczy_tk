@@ -1,12 +1,13 @@
 <?php
 namespace Trzczy\Login\Controller;
 
-class ArticleController
+class ArticleController extends Controller
 {
-    private $data;
+    protected $data;
 
     function __construct($view, $debugIsOn = false, $serviceFactory = null, $id)
     {
+        parent::__construct();
 
 
 
@@ -16,8 +17,12 @@ class ArticleController
         $this->data['debug'] = $debug;
 
         $this->data['siteTitle'] = 'Artykuły mojego bloga';
+        //diep 2017 Oct 25 04:24
+        $this->data['ctrl'] = $this->ctrl();
+        /** @noinspection PhpUndefinedMethodInspection */
         $this->data['articles'][] = $serviceFactory->getArticleById($id);
 
-        $view->render($this->data, 'articleFirst');
+        /** @noinspection PhpUndefinedMethodInspection */
+        $view->render($this->data, 'firstArticle');
     }
 }

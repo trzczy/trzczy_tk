@@ -3,25 +3,115 @@ namespace Mvc\Model\Domain;
 
 class ExcerptDomain
 {
+    public $sort;
     public $article_id;
     public $title;
     public $created;
     public $username;
     public $body;
     public $tags = [];
+    use ArticleDomainHelper;
 
     function __construct(ArticleDomain $object, $serialized)
     {
-        $object->prepare();
-        $object->trimToExcerpt(5225);
-
-        $articleDomainVariables = get_object_vars($object);
-        foreach ($articleDomainVariables as $property => $value) {
-            if (property_exists($this, $property)) {
-                $this->$property = $value;
-            }
-        }
+        $this->copyAnotherObjectFieldsValues($this, $object);
         unset($object);
+        $text = $this->cleanArticle($this->body);//$text
+        $this->body = $this->replaceBracketsByCompareOperatorsEverywhereButInCodePresentation($text);
+        $this->trimToExcerpt(225);
+    }
+
+
+    function trimToExcerpt($targetLength)
+    {
+        $strip = $this->stripTagsBetweenCode($this->body);
+        if (mb_strlen($strip) > $targetLength) {
+            $n = 0;
+            $newStripExcerptLength = 0;
+            $actualLength = 0;
+            $cutText = '';
+            while (
+                ($actualLength < $targetLength)
+                AND
+                ($newStripExcerptLength < $targetLength + 1)
+            ) {
+                $testedCutText = mb_substr($this->body, 0, ++$n);
+                $testedPartlyStripedExcerpt = $this->stripTagsBetweenCode($testedCutText);
+                //check the last char of $testedPartlyStripedExcerpt is a word char
+                $switch = '';
+                if (preg_match('/\w[^\w]\z/u', $testedPartlyStripedExcerpt, $resultArr)) {
+                    $switch = $resultArr[0];
+                }
+                $oldStripExcerptLength = $newStripExcerptLength;
+                $newStripExcerptLength = mb_strlen($testedPartlyStripedExcerpt);
+                if (
+                    $switch
+                    &&
+                    ($newStripExcerptLength - $oldStripExcerptLength)
+                ) {
+                    $m = $n - 1;
+                    $cutText = mb_substr($this->body, 0, $m);
+                    $actualLength = $oldStripExcerptLength;
+                }
+            }
+            $r = '/<code lang[^\w]+[^<>]*>(.*?)(?:<\/code>|$)/su';
+            $cutText = preg_replace_callback(
+                $r,
+                function ($c) {
+                    return str_replace($c[1], htmlspecialchars($c[1]), $c[0]);
+                },
+                $cutText
+            );
+            if (!empty($cutText)) {
+                $cutText = $this->htmlRegenerate($cutText);
+            }
+            $this->body = htmlspecialchars_decode($cutText);
+        }
+    }
+
+    function stripTagsBetweenCode($text)
+    {
+        $r = '/((^|<\/code>).*?(<code[^>]*?>|$))/us';
+        $text = preg_replace_callback($r, function ($a) {
+            $betweenCode = $a[0];
+
+            /*
+             *            $betweenCode = mb_ereg_replace('/<[^<>]*?>/s', '', $betweenCode);
+             */
+
+
+            $betweenCode = $this->addSpaceBetweenTags($betweenCode);
+            $betweenCode = strip_tags($betweenCode);
+
+            return $betweenCode;
+        }, $text);
+
+        return $text;
+    }
+
+    function addSpaceBetweenTags($text)
+    {
+        foreach (['p', 'code', 'blockquote'] as $tag) {
+            $text = preg_replace_callback('/(<\/' . $tag . '>)(\S)/',
+                function ($matches) {
+                    return ($matches[1] . ' ' . $matches[2]);
+                }
+                , $text);
+        }
+        return $text;
+    }
+
+    function htmlRegenerate($html)
+    {
+        $dom = new \DOMDocument();
+        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8"), LIBXML_HTML_NODEFDTD);
+        $dots = $dom->createTextNode("...");
+        $dom->documentElement->lastChild->lastChild->appendChild($dots);
+        $innerHTML = "";
+        foreach ($dom->getElementsByTagName('body')->item(0)->childNodes as $child) {
+            $innerHTML .= preg_replace('/\n+$/us', ' ', $dom->saveHTML($child));
+        }
+        return $innerHTML;
     }
 }
 

@@ -3,11 +3,15 @@ namespace Mvc\Model\Domain;
 
 class BlogDomain
 {
-    private $articles = [];
+    use ArticleDomainHelper;
 
-    function add(ArticleDomain $article)
+    private $articles = [];
+    function add(ArticleDomain $object)
     {
-        $this->articles[] = $article;
+            $text = $this->cleanArticle($object->body);//$text
+            $object->body = $this->replaceBracketsByCompareOperatorsEverywhereButInCodePresentation($text);
+
+        $this->articles[] = $object;
     }
 
     /**

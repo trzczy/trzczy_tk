@@ -1,4 +1,4 @@
-figure.pygments {
+figure.XXXpygments {
     margin: 18px;
     margin-left: -22px;
     margin-right: -22px;
@@ -6,13 +6,15 @@ width: 112%;
 }
 
 div.codeWrapper {
-    background-color: floralwhite;
+    background-color: aliceblue;
+    background-color: white;
+        /*background-color: #fff3f0;*/
     padding: 9px 0 9px 9px ;
     overflow-x: auto;
 }
 
 table.highlighttable {
-    font: 18pt/1.3 'Fira Mono', 'Lucida Console', Monaco, monospace;
+    font: 14pt/1.7 'Fira Mono', 'Lucida Console', Monaco, monospace;
 }
 td.code {
     padding-left: 8px;

@@ -20,6 +20,13 @@ class Excerpts extends Engine implements EngineInterface {
         foreach ($articlesArray as $article) {
             $code .= "{{excerpt/" . $ct++ . "}}";
         }
-        return $code;
+        return "
+        <main class=\"main\">
+            {{siteTitle/0}}
+            $code
+        </main>
+";
     }
 }
+
+
