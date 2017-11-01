@@ -1,0 +1,3 @@
+RewriteRule ^blog$ ?ctrl=blog
+RewriteRule ^apps$ ?ctrl=apps
+RewriteRule ^([\d]+)$ ?ctrl=article&id=$1

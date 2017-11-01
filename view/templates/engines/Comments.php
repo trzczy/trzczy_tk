@@ -1,10 +1,11 @@
 <?php
+
 namespace Trzczy\Login\View;
 
 use Trzczy\Frameworks\Tpl\Engine;
 use Trzczy\Frameworks\Tpl\EngineInterface;
 
-class Test extends Engine implements EngineInterface
+class Comments extends Engine implements EngineInterface
 {
     protected $data;
     protected $parametersArray;
@@ -14,32 +15,20 @@ class Test extends Engine implements EngineInterface
      */
     function getResult()
     {
-
-$pageIdentifier = 'article' . $this->data['articles'][0]->article_id;
-
+        $view_id = (int)$this->parametersArray[0];
+        $db_id = $this->data['articles'][$view_id]->article_id;
 
 
         return "
-        <div id='disqus_thread'></div>
-<script>
-    /*** RECOMMENDED CONFIGURATION VARIABLES ***/
-    var disqus_config = function () {
-        this.page.url = 'http://trzczy.tk/?anchor&ctrl=article&id=" . $this->data['articles'][0]->article_id . "';
-        this.page.identifier = '$pageIdentifier';
-    };
+▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛▬⬛
+\$view_id = $view_id
+\$db_id = $db_id
+◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛◼⬛
 
-    (function () {
-        // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = '//trzczytk.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    </script>
-<noscript>Please enable JavaScript to view the <a href='https://disqus.com/?ref_noscript' rel='nofollow'>comments
-        powered by Disqus.</a></noscript>
-
-
-    ";
+<input class='commenting display-toggle' id='display-toggle$view_id' type=checkbox>
+<label class='commenting display-button' for='display-toggle$view_id'><span>Commenting ▼</span></label>
+<label class='commenting hide-button' for='display-toggle$view_id'><span>Commenting ▲</span></label>
+<div class='hidden-content'>
+<div class='fb-comments' data-href='http://trzczy.tk/blog#article$db_id' data-width='888' data-numposts='5'></div></div>";
     }
 }

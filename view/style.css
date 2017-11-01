@@ -1036,3 +1036,31 @@ body {
 .main-contact .close:active {
     color: #68B604;
 }
+
+label.commenting {
+    text-decoration: none;
+    display: block;
+}
+
+
+
+/*commenting*/
+input.commenting,
+label.commenting.hide-button,
+.hidden-content {
+    display: none;
+}
+
+input.commenting.display-toggle:checked + label.commenting.display-button {
+    display: none;
+}
+
+input.commenting.display-toggle:checked + * + label.commenting.hide-button {
+    display: block;
+}
+
+input.commenting.display-toggle:checked + * + * + .hidden-content {
+    display: block;
+}
+/*==============*/
+
